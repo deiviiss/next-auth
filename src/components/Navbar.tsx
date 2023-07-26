@@ -1,6 +1,6 @@
 import { type NextPage } from 'next'
-import Link from 'next/link'
 import { getServerSession } from 'next-auth'
+import Link from 'next/link'
 
 const Navbar: NextPage = async () => {
   const session = await getServerSession()

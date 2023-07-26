@@ -1,8 +1,8 @@
 'use client'
 import axios, { AxiosError } from 'axios'
 import { type NextPage } from 'next'
-import { useRouter } from 'next/navigation'
 import { signIn } from 'next-auth/react'
+import { useRouter } from 'next/navigation'
 import { useState, type FormEvent } from 'react'
 
 const RegisterPage: NextPage = () => {

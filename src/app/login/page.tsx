@@ -1,7 +1,7 @@
 'use client'
 import { type NextPage } from 'next'
-import { useRouter } from 'next/navigation'
 import { signIn } from 'next-auth/react'
+import { useRouter } from 'next/navigation'
 import { useState, type FormEvent } from 'react'
 
 const LoginPage: NextPage = () => {

@@ -19,6 +19,4 @@ This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-opti
 
 ## Example
 
-https://session-next-auth.vercel.app/
-
-![](https://repository-images.githubusercontent.com/671144422/9d0b9c7e-2b9b-4ef1-92c0-2a144d8fe315)
+Developing...

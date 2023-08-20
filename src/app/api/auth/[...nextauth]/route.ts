@@ -1,8 +1,7 @@
 import bcrypt from 'bcryptjs'
 import NextAuth from 'next-auth'
 import CredentialsProvider from 'next-auth/providers/credentials'
-import { connectionDB } from '@/libs/mongodb'
-import User from '@/models/user'
+import { prisma } from '@/libs/prisma'
 
 const handler = NextAuth({
   providers: [
@@ -13,9 +12,11 @@ const handler = NextAuth({
         password: { label: 'Password', type: 'password', placeholder: 'Enter password' }
       },
       async authorize(credentials) {
-        await connectionDB()
-
-        const userFound = await User.findOne({ email: credentials?.email }).select('+password')
+        const userFound = await prisma.user.findFirst({
+          where: {
+            email: credentials?.email
+          }
+        })
 
         // eslint-disable-next-line @typescript-eslint/strict-boolean-expressions
         if (!(userFound)) throw new Error('Invalid credentials')
@@ -25,8 +26,8 @@ const handler = NextAuth({
         if (!passwordMatch) throw new Error('Invalid credentials')
 
         return {
-          id: userFound._id,
-          fullname: userFound.fullname,
+          id: userFound.id.toString(),
+          name: userFound.name,
           email: userFound.email
         }
       }

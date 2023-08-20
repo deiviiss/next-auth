@@ -28,7 +28,7 @@ const LoginPage: NextPage = () => {
     }
 
     if ((res?.ok) ?? false) {
-      router.push('/home/profile')
+      router.push('/profile')
       router.refresh()
     }
   }

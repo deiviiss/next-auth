@@ -19,10 +19,14 @@ const Navbar: NextPage = async () => {
             <Link href={'/'}>Home</Link>
           </li>
           {(session !== null)
-            ? <li className='px-3 py-1'>
-              <Link href={'/home/profile'}>Profile</Link>
-            </li>
-
+            ? <>
+              <li className='px-3 py-1'>
+                <Link href={'/profile'}>Profile</Link>
+              </li>
+              <li className='px-3 py-1'>
+                <Link href={'/users'}>Users</Link>
+              </li>
+            </>
             : <>
               <li className='px-3 py-1'>
                 <Link href={'/login'}>Sign In</Link>

@@ -10,7 +10,7 @@ const ProfilePage: NextPage = () => {
       <h1 className=' text-2xl font-bold'>
         Profile
       </h1>
-      <div className='bg-neutral-950 flex flex-col justify-center items-center mx-2 px-8 py-10 gap-y-4 rounded'>
+      <div className='bg-neutral-950 flex flex-col justify-center items-center mx-2 px-8 py-10 gap-y-4 rounded max-w-md'>
         {
           (session != null) &&
           <>

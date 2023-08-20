@@ -1,6 +1,6 @@
 import './globals.css'
 import { Inter } from 'next/font/google'
-import AuthProvider from './AuthProvider'
+import Providers from './providers'
 import Navbar from '@/components/Navbar'
 
 const inter = Inter({ subsets: ['latin'] })
@@ -18,10 +18,10 @@ const RootLayou = ({
   return (
     <html lang="es">
       <body className={inter.className}>
-        <AuthProvider>
+        <Providers>
           <Navbar />
           {children}
-        </AuthProvider>
+        </Providers>
       </body>
     </html>
   )

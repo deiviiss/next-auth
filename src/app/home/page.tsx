@@ -1,4 +1,5 @@
 import { type NextPage } from 'next'
+import Link from 'next/link'
 
 const HomePage: NextPage = () => {
   return (
@@ -7,6 +8,7 @@ const HomePage: NextPage = () => {
         <h1 className='text-center text-2xl font-bold mb-4'>
           Main page of the application.
         </h1>
+        <Link href='/profile'>Profile</Link>
       </div>
     </main>
   )

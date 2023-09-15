@@ -1,12 +1,10 @@
-'use client'
 import { type NextPage } from 'next'
-
-import { FormUser } from '@/components/FormUser'
+import { FormCreateUser } from '@/components/FormCreateUser'
 
 const RegisterPage: NextPage = () => {
   return (
     <div className='flex flex-col items-center justify-center h-[calc(100vh-4rem)]'>
-      <FormUser user={undefined}></FormUser>
+      <FormCreateUser></FormCreateUser>
     </div>
   )
 }

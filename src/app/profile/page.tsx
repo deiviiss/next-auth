@@ -1,8 +1,10 @@
 'use client'
+
 import { type NextPage } from 'next'
 import { useSession, signOut } from 'next-auth/react'
 
 const ProfilePage: NextPage = () => {
+  // nextAuth
   const { data: session } = useSession()
 
   return (
@@ -14,11 +16,17 @@ const ProfilePage: NextPage = () => {
         {
           (session != null) &&
           <>
-            <div className='flex gap-2'>
-              <p className='font-bold'>Email:</p>
-              <p>{session?.user?.email}</p>
+            <div className='flex flex-col gap-2'>
+              <div className='flex gap-2'>
+                <p className='font-bold'>Name:</p>
+                <p>{session.user?.name}</p>
+              </div>
+
+              <div className='flex gap-2'>
+                <p className='font-bold'>Email:</p>
+                <p>{session.user?.email}</p>
+              </div>
             </div>
-            {/* eslint-disable-next-line @typescript-eslint/no-misused-promises */}
             <button className=' bg-red-800 px-2 py-3 rounded-md hover:bg-red-500' onClick={async () => { await signOut() }}>Sign Out</button>
           </>
         }

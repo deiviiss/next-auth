@@ -88,39 +88,61 @@ export async function DELETE(request: Request, { params }: Params): Promise<Next
 }
 
 export async function PUT(request: Request, { params }: Params): Promise<NextResponse> {
-  const userFound = await prisma.user.findFirst({
-    where: {
-      id: Number(params.id)
-    }
-  })
+  try {
+    const userFound = await prisma.user.findFirst({
+      where: {
+        id: Number(params.id)
+      }
+    })
 
-  if (userFound == null) {
+    if (userFound == null) {
+      return NextResponse.json(
+        {
+          message: 'User not found'
+        },
+        {
+          status: 404
+        }
+      )
+    }
+
+    const body = await request.json()
+    // Filtrar solo los campos presentes en el cuerpo de la solicitud
+    const allowedFields = ['name', 'lastname', 'user', 'email', 'password']
+
+    const dataToUpdate = Object.keys(body.user)
+      .filter(key => allowedFields.includes(key))
+      .reduce((acc, key) => ({ ...acc, [key]: body.user[key] }), {})
+
+    await prisma.user.update({
+      where: {
+        id: Number(params.id)
+      },
+      data: dataToUpdate
+    })
+
+    return NextResponse.json({
+      message: 'edit single user'
+    })
+  } catch (error) {
+    if (error instanceof Error) {
+      return NextResponse.json(
+        {
+          message: error.message
+        },
+        {
+          status: 400
+        }
+      )
+    }
+
     return NextResponse.json(
       {
-        message: 'User not found'
+        message: 'Unexpected error occurred.'
       },
       {
-        status: 404
+        status: 500
       }
     )
   }
-
-  const body = await request.json()
-
-  // Filtrar solo los campos presentes en el cuerpo de la solicitud
-  const allowedFields = ['name', 'lastname', 'user', 'email', 'password']
-  const dataToUpdate = Object.keys(body)
-    .filter(key => allowedFields.includes(key))
-    .reduce((acc, key) => ({ ...acc, [key]: body[key] }), {})
-
-  await prisma.user.update({
-    where: {
-      id: Number(params.id)
-    },
-    data: dataToUpdate
-  })
-
-  return NextResponse.json({
-    message: 'edit single user'
-  })
 }

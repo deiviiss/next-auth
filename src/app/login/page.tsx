@@ -1,4 +1,5 @@
 'use client'
+
 import { type NextPage } from 'next'
 import { signIn } from 'next-auth/react'
 import { useRouter } from 'next/navigation'
@@ -19,8 +20,6 @@ const LoginPage: NextPage = () => {
       redirect: false
     })
 
-    // eslint-disable-next-line @typescript-eslint/strict-boolean-expressions, @typescript-eslint/no-confusing-void-expression
-    // if (res?.error) return setError(res.error) as unknown as string
     if ((res?.error) != null) {
       setError(res.error)
 
@@ -28,7 +27,7 @@ const LoginPage: NextPage = () => {
     }
 
     if ((res?.ok) ?? false) {
-      router.push('/profile')
+      router.push('/home')
       router.refresh()
     }
   }
@@ -38,7 +37,6 @@ const LoginPage: NextPage = () => {
       {
         (error.length > 0) && <div className='bg-red-500 text-white p-2 mb-2 rounded'>{error}</div>
       }
-      {/* eslint-disable-next-line @typescript-eslint/no-misused-promises */}
       <form onSubmit={handleSubmit} className=' bg-neutral-950 flex flex-col justify-center items-center mx-2 px-8 py-10 gap-y-4 rounded'>
 
         <h1 className='text-center text-2xl font-bold mb-4'>

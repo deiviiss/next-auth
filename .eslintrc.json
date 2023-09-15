@@ -4,13 +4,23 @@
     "es2021": true,
     "node": true
   },
-  "extends": "standard-with-typescript",
-  "overrides": [],
+  "extends": [
+    "plugin:react/recommended",
+    "standard-with-typescript"
+  ],
+  "parser": "@typescript-eslint/parser",
   "parserOptions": {
-    "ecmaVersion": "latest",
+    "ecmaFeatures": {
+      "jsx": true
+    },
+    "ecmaVersion": 2015,
     "sourceType": "module",
     "project": "./tsconfig.json"
   },
+  "plugins": [
+    "react",
+    "@typescript-eslint"
+  ],
   "rules": {
     "import/order": [
       "error",
@@ -33,7 +43,11 @@
         }
       }
     ],
-    "@typescript-eslint/space-before-function-paren": "off"
+    "@typescript-eslint/space-before-function-paren": "off",
+    "react/prop-types": "off",
+    "react/react-in-jsx-scope": "off",
+    "@typescript-eslint/no-floating-promises": "off",
+    "@typescript-eslint/no-misused-promises": "off"
   },
   "ignorePatterns": [
     "src/app/globals.css"

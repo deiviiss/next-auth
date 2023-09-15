@@ -10,12 +10,13 @@ export const metadata = {
   description: '<Implementa inicio y cierre de sesión, pagina protegidas>'
 }
 
-const RootLayou = ({
+const RootLayout = ({
   children
 }: {
   children: React.ReactNode
 }): JSX.Element => {
   return (
+
     <html lang="es">
       <body className={inter.className}>
         <Providers>
@@ -24,7 +25,8 @@ const RootLayou = ({
         </Providers>
       </body>
     </html>
+
   )
 }
 
-export default RootLayou
+export default RootLayout

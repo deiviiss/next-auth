@@ -10,7 +10,7 @@ const UsersContext = createContext<UsersContextType>(
     users: [],
     loadUsers: async () => { },
     createUser: async () => { },
-    updateUser: async (id: number, user: User) => { return id },
+    updateUser: async (id: number, user: UpdateUser) => { return id },
     deleteUser: async (id: number) => { return id }
   })
 
@@ -45,9 +45,10 @@ export const UsersProvider = ({ children }: Props): JSX.Element => {
     })
   }
 
-  const updateUser = async (id: number, user: User): Promise<number> => {
+  const updateUser = async (id: number, user: UpdateUser): Promise<number> => {
     console.log('update user...')
-    const res = await axios.put(`/api/users/${id}`, user)
+    const res = await axios.put(`/api/users/${id}`, { user })
+
     if (res.status === 200) {
       setUsers(users.filter(user => user.id !== id))
       return user.id

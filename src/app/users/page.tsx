@@ -9,7 +9,6 @@ const UsersPage: NextPage = () => {
   const { users, loadUsers } = useUsers()
 
   useEffect(() => {
-    // eslint-disable-next-line @typescript-eslint/no-floating-promises
     loadUsers()
   }, [])
 

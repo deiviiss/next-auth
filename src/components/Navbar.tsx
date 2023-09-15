@@ -3,6 +3,7 @@ import { getServerSession } from 'next-auth'
 import Link from 'next/link'
 
 const Navbar: NextPage = async () => {
+  // nextAuth
   const session = await getServerSession()
 
   return (
@@ -15,11 +16,11 @@ const Navbar: NextPage = async () => {
         </Link>
 
         <ul className='flex gap-x-2'>
-          <li className='px-3 py-1'>
-            <Link href={'/'}>Home</Link>
-          </li>
           {(session !== null)
             ? <>
+              <li className='px-3 py-1'>
+                <Link href={'/home'}>Home</Link>
+              </li>
               <li className='px-3 py-1'>
                 <Link href={'/profile'}>Profile</Link>
               </li>
@@ -31,9 +32,9 @@ const Navbar: NextPage = async () => {
               <li className='px-3 py-1'>
                 <Link href={'/login'}>Sign In</Link>
               </li>
-              {/* <li className='px-3 py-1'>
+              <li className='px-3 py-1'>
                 <Link href={'/register'}>Sign Up</Link>
-              </li> */}
+              </li>
             </>
           }
         </ul>

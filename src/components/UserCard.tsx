@@ -13,7 +13,7 @@ export const UserCard = ({ user }: { user: User }): JSX.Element => {
   return (
     <div className='flex justify-between bg-neutral-950 p-4 rounded-lg max-w-md min-w-[300px] mx-auto'>
       <div className="flex flex-col">
-        <h2 className='text-2xl font-bold' key={user.id}>{user.name}</h2>
+        <h2 className='text-2xl font-bold' key={user.id}>{user.name} {user.lastname}</h2>
         <p>{user.user}</p>
         <p>{new Date(user.createdAt).toDateString()}</p>
       </div>

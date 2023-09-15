@@ -1,5 +1,5 @@
 import { type User } from '@prisma/client'
-import { type CreateUser } from './User'
+import { type UpdateUser, type CreateUser } from './User'
 
 export interface Props {
   children: React.ReactNode
@@ -14,5 +14,5 @@ export interface UsersContextType {
   loadUsers: () => Promise<void>
   createUser: (params: CreateUser) => Promise<void>
   deleteUser: (id: number) => Promise<number>
-  updateUser: (id: number, user: User) => Promise<number>
+  updateUser: (id: number, user: UpdateUser) => Promise<number>
 }

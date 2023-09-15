@@ -18,8 +18,7 @@ const handler = NextAuth({
           }
         })
 
-        // eslint-disable-next-line @typescript-eslint/strict-boolean-expressions
-        if (!(userFound)) throw new Error('Invalid credentials')
+        if (userFound == null) throw new Error('Invalid credentials')
 
         // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
         const passwordMatch = await bcrypt.compare(credentials!.password, userFound.password)
@@ -34,13 +33,11 @@ const handler = NextAuth({
     })
   ],
   callbacks: {
-    jwt({ account, token, user, profile, session }) {
-      // eslint-disable-next-line @typescript-eslint/strict-boolean-expressions
-      if (user) token.user = user
-      return token
+    async jwt({ token, user }) {
+      return { ...token, ...user }
     },
-    session({ session, token }) {
-      session.user = token.user as any
+    async session({ session, token }) {
+      session.user = token as any
       return session
     }
   },

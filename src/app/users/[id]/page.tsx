@@ -6,7 +6,7 @@ import { FormEditUser } from '@/components/FormEditUser'
 import { type UpdateUser } from '@/interfaces/User'
 
 const fetchUser = async (id: number): Promise<UpdateUser> => {
-  const response = await axios.get<UpdateUser>(`http://localhost:3000/api/users/${id}`)
+  const response = await axios.get<UpdateUser>(`/api/users/${id}`)
 
   const user: UpdateUser = response.data
 
